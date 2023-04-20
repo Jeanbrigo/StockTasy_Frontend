@@ -1,4 +1,5 @@
 import React from "react";
+import DropdownInput from "../components/PlayerNumberSelector";
 import { GlobalCtx } from "../App";
 
 const Dashboard = (props) => {
@@ -76,13 +77,16 @@ const Dashboard = (props) => {
   return (
     <div>
       <h1>Dashboard</h1>
-      <h2>New Note</h2>
+      <h2>Start New Game</h2>
+      <DropdownInput/>
       <input type="text" name="note" ref={input} />
-      <button onClick={handleClick}>Create Note</button>
-      <h2>Update Note</h2>
+      <input type="text" name="note" ref={input} />
+      <input type="text" name="note" ref={input} />
+      <button onClick={handleClick}>Create Game</button>
+      <h2>Update Game</h2>
       <input type="text" name="note" ref={update} />
       <button onClick={handleUpdate}>Update</button>
-      <h2>Notes</h2>
+      <h2>Games You Are Currently In:</h2>
       <ul>
         {notes
           ? notes.map((note) => (

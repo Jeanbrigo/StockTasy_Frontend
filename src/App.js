@@ -29,7 +29,7 @@ function App() {
     <GlobalCtx.Provider value={{ gState, setGState }}>
       <div className="App">
         <Link to="/">
-          <h1>ReactNotes</h1>
+          <h1>StockTasy</h1>
         </Link>
         <Header />
         <main>
