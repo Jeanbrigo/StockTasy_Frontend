@@ -1,6 +1,8 @@
 import React from "react";
 import PlayerNumberInput from "../components/PlayerNumberSelector";
 import BudgetInput from "../components/Budget";
+import PointsInterval from "../components/PointsInterval";
+import GameDuration from "../components/GameDurationDropdown";
 import { GlobalCtx } from "../App";
 
 const Dashboard = (props) => {
@@ -81,12 +83,12 @@ const Dashboard = (props) => {
       <h2>Start New Game</h2>
       <PlayerNumberInput/>
       <BudgetInput/>
-      <input type="text" name="note" ref={input} />
-      <input type="text" name="note" ref={input} />
+      <PointsInterval/>
+      <GameDuration/>
       <button onClick={handleClick}>Create Game</button>
-      <h2>Update Game</h2>
+      {/* <h2>Update Game</h2>
       <input type="text" name="note" ref={update} />
-      <button onClick={handleUpdate}>Update</button>
+      <button onClick={handleUpdate}>Update</button> */}
       <h2>Games You Are Currently In:</h2>
       <ul>
         {notes
