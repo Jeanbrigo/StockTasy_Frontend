@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
 import Header from "./components/Header";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";

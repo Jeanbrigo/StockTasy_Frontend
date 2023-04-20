@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function DropdownInput() {
+function PlayerNumberInput() {
   const [selectedValue, setSelectedValue] = useState('');
 
   const handleChange = (event) => {
@@ -24,4 +24,4 @@ function DropdownInput() {
   );
 }
 
-export default DropdownInput;
+export default PlayerNumberInput;

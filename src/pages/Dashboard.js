@@ -1,5 +1,6 @@
 import React from "react";
-import DropdownInput from "../components/PlayerNumberSelector";
+import PlayerNumberInput from "../components/PlayerNumberSelector";
+import BudgetInput from "../components/Budget";
 import { GlobalCtx } from "../App";
 
 const Dashboard = (props) => {
@@ -78,8 +79,8 @@ const Dashboard = (props) => {
     <div>
       <h1>Dashboard</h1>
       <h2>Start New Game</h2>
-      <DropdownInput/>
-      <input type="text" name="note" ref={input} />
+      <PlayerNumberInput/>
+      <BudgetInput/>
       <input type="text" name="note" ref={input} />
       <input type="text" name="note" ref={input} />
       <button onClick={handleClick}>Create Game</button>
