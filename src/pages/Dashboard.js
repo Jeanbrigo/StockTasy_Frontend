@@ -3,69 +3,70 @@ import PlayerNumberInput from "../components/PlayerNumberSelector";
 import BudgetInput from "../components/Budget";
 import PointsInterval from "../components/PointsInterval";
 import GameDuration from "../components/GameDurationDropdown";
+import Game from "../components/Game";
 import { GlobalCtx } from "../App";
 
 const Dashboard = (props) => {
   const { gState, setGState } = React.useContext(GlobalCtx);
   const { url, token } = gState;
-  const [notes, setNotes] = React.useState(null);
+  const [games, setGames] = React.useState(null);
   const [updateID, setUpdateID] = React.useState(null);
 
-  const getNotes = async () => {
-    const response = await fetch(url + "/note/", {
+  const getGames = async () => {
+    const response = await fetch(url + "/game/", {
       method: "get",
       headers: {
         Authorization: "bearer " + token,
       },
     });
     const json = await response.json();
-    setNotes(json);
+    setGames(json);
   };
 
   React.useEffect(() => {
-    getNotes();
+    getGames();
   }, []);
 
   const input = React.useRef(null);
   const update = React.useRef(null);
 
   const handleClick = (event) => {
-    const note = input.current.value;
-    fetch(url + "/note/", {
+    const game = input.current.value;
+    fetch(url + "/game/", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
         Authorization: `bearer ${token}`,
       },
-      body: JSON.stringify({ note }),
+      body: JSON.stringify({ game }),
     })
       .then((response) => response.json())
       .then((data) => {
         input.current.value = "";
-        getNotes();
+        getGames();
       });
   };
 
   const handleUpdate = () => {
-    const note = update.current.value;
-    fetch(url + "/note/" + updateID, {
+    const game = update.current.value;
+    fetch(url + "/game/" + updateID, {
       method: "put",
       headers: {
         "Content-Type": "application/json",
         Authorization: `bearer ${token}`,
       },
-      body: JSON.stringify({ note }),
+      body: JSON.stringify({ game }),
     })
       .then((response) => response.json())
       .then((data) => {
         update.current.value = "";
         setUpdateID(null);
-        getNotes();
+        getGames();
       });
   };
 
   const handleDelete = (id) => {
-    fetch(url + "/note/" + id, {
+    fetch(url + "/game/" + id, {
       method: "delete",
       headers: {
         Authorization: `bearer ${token}`,
@@ -73,7 +74,7 @@ const Dashboard = (props) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        getNotes();
+        getGames();
       });
   };
 
@@ -91,20 +92,20 @@ const Dashboard = (props) => {
       <button onClick={handleUpdate}>Update</button> */}
       <h2>Games You Are Currently In:</h2>
       <ul>
-        {notes
-          ? notes.map((note) => (
-              <li key={notes._id}>
-                <h3>{note.note}</h3>
-                <button onClick={() => handleDelete(note._id)}>Delete</button>
-                <button
-                  onClick={() => {
-                    setUpdateID(note._id);
-                    update.current.value = note.note;
-                  }}
-                >
-                  Edit
-                </button>
-              </li>
+        {games
+          ? games.map((game) => (
+              <Game key={game._id}
+                // <h3>Game ID: {game._id}</h3>
+                // <button onClick={() => handleDelete(note._id)}>Delete</button> */}
+                // {/* <button
+                //   onClick={() => {
+                //     setUpdateID(note._id);
+                //     update.current.value = note.note;
+                //   }}
+                // >
+                //   Edit
+                // </button>
+              />
             ))
           : null}
       </ul>
